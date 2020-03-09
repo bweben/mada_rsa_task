@@ -13,15 +13,15 @@ public class FastExponentiation {
         this.mod = mod;
     }
 
-    public int calculateMod() {
+    public BigInteger calculateMod() {
         final String binaryString = Integer.toBinaryString(exponent);
         int i = binaryString.length() - 1;
-        int h = 1;
+        BigInteger h = BigInteger.ONE;
         BigInteger k = base;
 
         while (i >= 0) {
             if (binaryString.charAt(i) == '1') {
-                h = k.multiply(BigInteger.valueOf(i)).mod(mod).intValueExact();
+                h = k.multiply(BigInteger.valueOf(i)).mod(mod);
             }
 
             k = k.sqrt().mod(mod);

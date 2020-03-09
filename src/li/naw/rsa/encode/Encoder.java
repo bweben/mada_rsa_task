@@ -17,17 +17,14 @@ public class Encoder {
     public String encode(String toEncode) {
         return toEncode.chars()
                 .mapToObj(this::encode)
-                .collect(Collectors.joining());
+                .collect(Collectors.joining(","));
     }
 
     private String encode(int asciiCode) {
-        return String.valueOf(
-                Character.highSurrogate(
-                        new FastExponentiation(BigInteger.valueOf(asciiCode),
-                                publicKey.getE().intValueExact(),
-                                publicKey.getN())
-                                .calculateMod()
-                )
-        );
+        return new FastExponentiation(BigInteger.valueOf(asciiCode),
+                publicKey.getE().intValueExact(),
+                publicKey.getN())
+                .calculateMod()
+                .toString(10);
     }
 }

@@ -4,6 +4,7 @@ import li.naw.rsa.model.RSAPrivateKey;
 import li.naw.rsa.utils.FastExponentiation;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Decoder {
@@ -14,18 +15,19 @@ public class Decoder {
     }
 
     public String decode(String toDecode) {
-        return toDecode.chars()
-                .mapToObj(this::encode)
+        return Arrays.stream(toDecode.split(","))
+                .map(this::encode)
                 .collect(Collectors.joining());
     }
 
-    private String encode(int asciiCode) {
+    private String encode(String part) {
         return String.valueOf(
                 Character.highSurrogate(
-                        new FastExponentiation(BigInteger.valueOf(asciiCode),
+                        new FastExponentiation(new BigInteger(part),
                                 privateKey.getD().intValueExact(),
                                 privateKey.getN())
                                 .calculateMod()
+                                .intValueExact()
                 )
         );
     }
