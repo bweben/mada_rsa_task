@@ -1,4 +1,4 @@
-package li.naw.rsa.generate;
+package li.naw.rsa.utils;
 
 import li.naw.rsa.model.RSAKey;
 
