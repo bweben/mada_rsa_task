@@ -24,7 +24,7 @@ public class Decoder {
         return String.valueOf(
                 Character.highSurrogate(
                         new FastExponentiation(new BigInteger(part),
-                                privateKey.getD().intValueExact(),
+                                privateKey.getD(),
                                 privateKey.getN())
                                 .calculateMod()
                                 .intValueExact()

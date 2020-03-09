@@ -21,7 +21,7 @@ public class App {
         // app.generateKeyPair();
         // app.encodeText();
         // app.decodeText();
-        // app.decodeFileAndLog();
+        app.decodeFileAndLog();
     }
 
     // generate RSA key pair and save it

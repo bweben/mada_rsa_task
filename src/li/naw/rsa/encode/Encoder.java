@@ -4,7 +4,6 @@ import li.naw.rsa.model.RSAPublicKey;
 import li.naw.rsa.utils.FastExponentiation;
 
 import java.math.BigInteger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Encoder {
@@ -22,7 +21,7 @@ public class Encoder {
 
     private String encode(int asciiCode) {
         return new FastExponentiation(BigInteger.valueOf(asciiCode),
-                publicKey.getE().intValueExact(),
+                publicKey.getE(),
                 publicKey.getN())
                 .calculateMod()
                 .toString(10);
