@@ -10,9 +10,18 @@ public class ExtendedEuclidAlgorithm {
         BigInteger x1 = BigInteger.ZERO;
 
         BigInteger y0 = BigInteger.ZERO;
-        BigInteger yy = BigInteger.ONE;
+        BigInteger y1 = BigInteger.ONE;
 
-        while (b.compareTo(BigInteger.ZERO) != 0) {
+        while (b.equals(BigInteger.ZERO)) {
+            BigInteger[] divideAndRemainder = a.divideAndRemainder(b);
+
+            BigInteger q = divideAndRemainder[0];
+            BigInteger r = divideAndRemainder[1];
+
+            x0 = x1;
+            y0 = y1;
+            x1 = x0.subtract(q.multiply(x1));
+            y1 = y0.subtract(q.multiply(y1));
         }
 
         return new EuclidResult(x0, y0);
