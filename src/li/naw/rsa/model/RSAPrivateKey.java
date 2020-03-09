@@ -18,7 +18,7 @@ public class RSAPrivateKey implements RSAKey {
     }
 
     public String getContent() {
-        return getN() + "\n" + getD();
+        return "(" + getN() + "," + getD() + ")";
     }
 
     public BigInteger getN() {

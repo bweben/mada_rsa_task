@@ -15,9 +15,10 @@ public class FileToPrivateKey {
     public RSAPrivateKey loadPrivateKey() {
         try {
             final String privateKeyAsString = new FileReader().readAsString(file);
-            final String[] nAndD = privateKeyAsString.split("\n");
+            final String[] nAndD = privateKeyAsString.split(",");
 
-            return new RSAPrivateKey(new BigInteger(nAndD[0]), new BigInteger(nAndD[1]));
+            return new RSAPrivateKey(new BigInteger(nAndD[0].substring(1)),
+                    new BigInteger(nAndD[1].substring(0, nAndD[1].length() - 1)));
         } catch (IOException e) {
             e.printStackTrace();
             return null;

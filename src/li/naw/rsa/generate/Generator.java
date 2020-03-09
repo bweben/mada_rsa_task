@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.util.Random;
 
 public class Generator {
-    private static final int RSA_LENGTH = 1024;
+    private static final int RSA_LENGTH = 2048;
 
     public RSAKeys generateRSAKeys() {
         BigInteger p = BigInteger.probablePrime(RSA_LENGTH, new Random());
