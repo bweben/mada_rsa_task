@@ -27,10 +27,12 @@ public class Generator {
         return new RSAKeys(new RSAPrivateKey(n, d), new RSAPublicKey(n, e));
     }
 
+    // TODO: generate appropriate e
     private BigInteger genreateE(BigInteger m) {
         return BigInteger.ONE;
     }
 
+    // TODO: generate appropriate phi
     private BigInteger generatePhi(BigInteger n) {
         return BigInteger.ONE;
     }
