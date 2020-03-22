@@ -19,7 +19,7 @@ public class Generator {
         }
 
         BigInteger n = p.multiply(q);
-        BigInteger m = generatePhi(n);
+        BigInteger m = generatePhi(p, q);
 
         BigInteger e = genreateE(m);
         BigInteger d = new ExtendedEuclidAlgorithm().calculate(m, e).getY0();
@@ -27,13 +27,17 @@ public class Generator {
         return new RSAKeys(new RSAPrivateKey(n, d), new RSAPublicKey(n, e));
     }
 
-    // TODO: generate appropriate e
     private BigInteger genreateE(BigInteger m) {
+        BigInteger e = BigInteger.ZERO;
+        while (!e.equals(BigInteger.ZERO) || !e.mod(m).equals(BigInteger.ONE)) {
+            e = BigInteger.probablePrime(RSA_LENGTH / 2, new Random());
+        }
+
         return BigInteger.ONE;
     }
 
-    // TODO: generate appropriate phi
-    private BigInteger generatePhi(BigInteger n) {
-        return BigInteger.ONE;
+    private BigInteger generatePhi(BigInteger p, BigInteger q) {
+        // (p-1)*(p^e1-1) * (q-1)*(q^e2-1) = (p-1)*(q-1) because e1-1 and e2-1 equals 0 and x^0 equals 1
+        return p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
     }
 }

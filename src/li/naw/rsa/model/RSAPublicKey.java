@@ -3,7 +3,7 @@ package li.naw.rsa.model;
 import java.math.BigInteger;
 
 public class RSAPublicKey implements RSAKey {
-    private static final String file = "pk.txt";
+    private static final String FILE = "pk.txt";
 
     private BigInteger n;
     private BigInteger e;
@@ -14,7 +14,7 @@ public class RSAPublicKey implements RSAKey {
     }
 
     public String getFile() {
-        return file;
+        return FILE;
     }
 
     public String getContent() {

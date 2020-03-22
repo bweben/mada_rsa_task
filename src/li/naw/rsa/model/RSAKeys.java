@@ -1,7 +1,5 @@
 package li.naw.rsa.model;
 
-import java.security.PublicKey;
-
 public class RSAKeys {
     private RSAPrivateKey privateKey;
     private RSAPublicKey publicKey;

@@ -18,10 +18,10 @@ import java.nio.file.Path;
 public class App {
     public static void main(String[] args) throws IOException {
         App app = new App();
-        // app.generateKeyPair();
+        app.generateKeyPair();
         // app.encodeText();
         // app.decodeText();
-        app.decodeFileAndLog();
+        // app.decodeFileAndLog();
     }
 
     // generate RSA key pair and save it
