@@ -14,8 +14,6 @@ public class FileWriter {
     }
 
     public void writeToFile() throws IOException {
-        Path keyPath = Files.createFile(Path.of(key.getFile()));
-
-        Files.writeString(keyPath, key.getContent());
+        Files.writeString(Path.of(key.getFile()), key.getContent());
     }
 }
