@@ -37,14 +37,10 @@ public class Generator {
         EuclidResult result;
         BigInteger e;
 
-        System.out.println("search e");
-
         do {
             e = new BigInteger(RSA_LENGTH / 2, RANDOM);
             result = euclidAlgorithm.calculate(m, e);
         } while (!result.getA().equals(BigInteger.ONE));
-
-        System.out.println("found e");
 
         return new Pair<>(e, result.getY0());
     }

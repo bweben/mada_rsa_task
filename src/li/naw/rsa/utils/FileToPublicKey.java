@@ -15,7 +15,7 @@ public class FileToPublicKey {
     public RSAPublicKey loadPublicKey() {
         try {
             final String publicKeyAsString = new FileReader().readAsString(file);
-            final String[] nAndE = publicKeyAsString.split("\n");
+            final String[] nAndE = publicKeyAsString.split(",");
 
             return new RSAPublicKey(new BigInteger(nAndE[0].substring(1)),
                     new BigInteger(nAndE[1].substring(0, nAndE[1].length() - 1)));

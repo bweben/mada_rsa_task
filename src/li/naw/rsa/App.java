@@ -19,9 +19,9 @@ public class App {
     public static void main(String[] args) throws IOException {
         App app = new App();
         app.generateKeyPair();
-        // app.encodeText();
-        // app.decodeText();
-        // app.decodeFileAndLog();
+        app.encodeText();
+        app.decodeText();
+        app.decodeFileAndLog();
     }
 
     // generate RSA key pair and save it
@@ -33,7 +33,7 @@ public class App {
 
     // encode text and save as chiffre.txt
     private void encodeText() throws IOException {
-        String text = new FileReader().readAsString("text.txt");
+        String text = new FileReader().readAsString("provided/text.txt");
         RSAPublicKey publicKey = new FileToPublicKey("pk.txt").loadPublicKey();
 
         String encodedText = new Encoder(publicKey).encode(text);
@@ -53,8 +53,8 @@ public class App {
 
     // decode text from chiffre.txt and log to console
     private void decodeFileAndLog() throws IOException {
-        String encodedText = new FileReader().readAsString("chiffre.txt");
-        RSAPrivateKey privateKey = new FileToPrivateKey("sk.txt").loadPrivateKey();
+        String encodedText = new FileReader().readAsString("provided/chiffre.txt");
+        RSAPrivateKey privateKey = new FileToPrivateKey("provided/sk.txt").loadPrivateKey();
 
         String text = new Decoder(privateKey).decode(encodedText);
         System.out.println(text);
