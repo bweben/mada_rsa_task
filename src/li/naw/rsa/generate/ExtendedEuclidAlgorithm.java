@@ -21,10 +21,13 @@ public class ExtendedEuclidAlgorithm {
             a = b;
             b = r;
 
+            BigInteger x0Copy = x0;
+            BigInteger y0Copy = y0;
+
             x0 = x1;
             y0 = y1;
-            x1 = x0.subtract(q.multiply(x1));
-            y1 = y0.subtract(q.multiply(y1));
+            x1 = x0Copy.subtract(q.multiply(x1));
+            y1 = y0Copy.subtract(q.multiply(y1));
         }
 
         return new EuclidResult(a, b, x0, y0);
