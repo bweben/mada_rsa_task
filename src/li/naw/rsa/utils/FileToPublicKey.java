@@ -5,6 +5,9 @@ import li.naw.rsa.model.RSAPublicKey;
 import java.io.IOException;
 import java.math.BigInteger;
 
+/**
+ * convert a file path to a public key
+ */
 public class FileToPublicKey {
     private final String file;
 

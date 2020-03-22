@@ -2,6 +2,9 @@ package li.naw.rsa.utils;
 
 import java.math.BigInteger;
 
+/**
+ * fast exponentiation algorithm implementation
+ */
 public class FastExponentiation {
     private final BigInteger base;
     private final BigInteger exponent;
@@ -17,6 +20,7 @@ public class FastExponentiation {
         BigInteger h = BigInteger.ONE;
         BigInteger k = base;
 
+        // convert BigInteger to binary to step through
         String exponentBinary = exponent.toString(2);
         int i = exponentBinary.length() - 1;
 

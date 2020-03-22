@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * wrapper to write a key to a file
+ */
 public class FileWriter {
     private final RSAKey key;
 

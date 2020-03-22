@@ -1,5 +1,8 @@
 package li.naw.rsa.model;
 
+/**
+ * wrapper to store private and public key
+ */
 public class RSAKeys {
     private RSAPrivateKey privateKey;
     private RSAPublicKey publicKey;

@@ -2,6 +2,9 @@ package li.naw.rsa.model;
 
 import java.math.BigInteger;
 
+/**
+ * wrapper to store the RSA public key
+ */
 public class RSAPublicKey implements RSAKey {
     private static final String FILE = "pk.txt";
 

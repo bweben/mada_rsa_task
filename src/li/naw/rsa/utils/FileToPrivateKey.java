@@ -5,6 +5,9 @@ import li.naw.rsa.model.RSAPrivateKey;
 import java.io.IOException;
 import java.math.BigInteger;
 
+/**
+ * convert a file path to a private key
+ */
 public class FileToPrivateKey {
     private final String file;
 

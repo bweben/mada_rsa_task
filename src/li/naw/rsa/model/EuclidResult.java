@@ -2,6 +2,9 @@ package li.naw.rsa.model;
 
 import java.math.BigInteger;
 
+/**
+ * stores the result of the euclid algorithm
+ */
 public class EuclidResult {
     private BigInteger a;
     private BigInteger b;

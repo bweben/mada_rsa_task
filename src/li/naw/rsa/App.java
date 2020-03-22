@@ -16,6 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+/**
+ * main class to implement the different use cases
+ */
 public class App {
     public static void main(String[] args) throws IOException {
         App app = new App();

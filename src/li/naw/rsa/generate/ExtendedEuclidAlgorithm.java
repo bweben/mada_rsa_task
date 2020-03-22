@@ -4,6 +4,9 @@ import li.naw.rsa.model.EuclidResult;
 
 import java.math.BigInteger;
 
+/**
+ * euclid algorithm to calculate gcd (greatest common divisor) efficiently
+ */
 public class ExtendedEuclidAlgorithm {
     public EuclidResult calculate(BigInteger a, BigInteger b) {
         BigInteger x0 = BigInteger.ONE;
