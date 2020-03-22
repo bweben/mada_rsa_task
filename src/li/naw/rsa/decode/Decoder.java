@@ -16,19 +16,17 @@ public class Decoder {
 
     public String decode(String toDecode) {
         return Arrays.stream(toDecode.split(","))
-                .map(this::encode)
+                .map(this::decodePart)
                 .collect(Collectors.joining());
     }
 
-    private String encode(String part) {
-        return String.valueOf(
-                Character.highSurrogate(
+    private String decodePart(String part) {
+        return String.valueOf((char)
                         new FastExponentiation(new BigInteger(part),
                                 privateKey.getD(),
                                 privateKey.getN())
                                 .calculateMod()
                                 .intValueExact()
-                )
         );
     }
 }

@@ -14,17 +14,18 @@ public class FastExponentiation {
     }
 
     public BigInteger calculateMod() {
-        final String binaryString = exponent.toString(2);
-        int i = binaryString.length() - 1;
         BigInteger h = BigInteger.ONE;
         BigInteger k = base;
 
+        String exponentBinary = exponent.toString(2);
+        int i = exponentBinary.length() - 1;
+
         while (i >= 0) {
-            if (binaryString.charAt(i) == '1') {
-                h = k.multiply(h).mod(mod);
+            if (exponentBinary.charAt(i) == '1') {
+                h = h.multiply(k).mod(mod);
             }
 
-            k = k.sqrt().mod(mod);
+            k = k.modPow(BigInteger.TWO, mod);
             i = i - 1;
         }
 
