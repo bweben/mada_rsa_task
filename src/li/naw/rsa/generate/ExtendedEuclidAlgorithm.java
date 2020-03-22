@@ -12,11 +12,14 @@ public class ExtendedEuclidAlgorithm {
         BigInteger y0 = BigInteger.ZERO;
         BigInteger y1 = BigInteger.ONE;
 
-        while (b.equals(BigInteger.ZERO)) {
+        while (!b.equals(BigInteger.ZERO)) {
             BigInteger[] divideAndRemainder = a.divideAndRemainder(b);
 
             BigInteger q = divideAndRemainder[0];
             BigInteger r = divideAndRemainder[1];
+
+            a = b;
+            b = r;
 
             x0 = x1;
             y0 = y1;
@@ -24,6 +27,6 @@ public class ExtendedEuclidAlgorithm {
             y1 = y0.subtract(q.multiply(y1));
         }
 
-        return new EuclidResult(x0, y0);
+        return new EuclidResult(a, b, x0, y0);
     }
 }

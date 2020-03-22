@@ -1,39 +1,52 @@
 package li.naw.rsa.generate;
 
+import javafx.util.Pair;
+import li.naw.rsa.model.EuclidResult;
 import li.naw.rsa.model.RSAKeys;
 import li.naw.rsa.model.RSAPrivateKey;
 import li.naw.rsa.model.RSAPublicKey;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class Generator {
     private static final int RSA_LENGTH = 2048;
+    private static final Random RANDOM = new SecureRandom();
 
     public RSAKeys generateRSAKeys() {
-        BigInteger p = BigInteger.probablePrime(RSA_LENGTH, new Random());
+        BigInteger p = BigInteger.probablePrime(RSA_LENGTH, RANDOM);
         BigInteger q = p;
 
         while (p.equals(q)) { // eliminate minimal change that the probablePrime function returns two times the same result
-            q = BigInteger.probablePrime(RSA_LENGTH, new Random());
+            q = BigInteger.probablePrime(RSA_LENGTH, RANDOM);
         }
 
         BigInteger n = p.multiply(q);
         BigInteger m = generatePhi(p, q);
 
-        BigInteger e = genreateE(m);
-        BigInteger d = new ExtendedEuclidAlgorithm().calculate(m, e).getY0();
+        Pair<BigInteger, BigInteger> eAndDPair = genreateEAndD(m);
+        BigInteger e = eAndDPair.getKey();
+        BigInteger d = eAndDPair.getValue();
 
         return new RSAKeys(new RSAPrivateKey(n, d), new RSAPublicKey(n, e));
     }
 
-    private BigInteger genreateE(BigInteger m) {
-        BigInteger e = BigInteger.ZERO;
-        while (!e.equals(BigInteger.ZERO) || !e.mod(m).equals(BigInteger.ONE)) {
-            e = BigInteger.probablePrime(RSA_LENGTH / 2, new Random());
-        }
+    private Pair<BigInteger, BigInteger> genreateEAndD(BigInteger m) {
+        ExtendedEuclidAlgorithm euclidAlgorithm = new ExtendedEuclidAlgorithm();
+        EuclidResult result;
+        BigInteger e;
 
-        return BigInteger.ONE;
+        System.out.println("search e");
+
+        do {
+            e = new BigInteger(RSA_LENGTH / 2, RANDOM);
+            result = euclidAlgorithm.calculate(m, e);
+        } while (!result.getA().equals(BigInteger.ONE));
+
+        System.out.println("found e");
+
+        return new Pair<>(e, result.getY0());
     }
 
     private BigInteger generatePhi(BigInteger p, BigInteger q) {
