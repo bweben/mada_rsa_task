@@ -33,6 +33,10 @@ public class ExtendedEuclidAlgorithm {
             y1 = y0Copy.subtract(q.multiply(y1));
         }
 
+        if (y0.compareTo(BigInteger.ZERO) < 0) {
+            y0 = y0.add(a);
+        }
+
         return new EuclidResult(a, b, x0, y0);
     }
 }
